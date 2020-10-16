@@ -47,6 +47,10 @@ abstract class BaseCommand
 
     function handle()
     {
+        if (!$this->text) {
+            $this->text = require_once(__DIR__ . '/../config/text.php');
+        }
+
         $this->user = User::where('chat_id', $this->bot_user->getId())->first();
         if (!$this->user) {
             User::create([
@@ -57,10 +61,6 @@ abstract class BaseCommand
             ]);
             $this->user = User::where('chat_id', $this->bot_user->getId())->first();
             $this->triggerCommand(NotifyAdmin::class);
-        }
-
-        if (!$this->text) {
-            $this->text = require_once(__DIR__ . '/../config/text.php');
         }
 
         $this->processCommand();

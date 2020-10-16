@@ -6,7 +6,8 @@
     "telegram-bot/api": "^2.3",
     "twig/twig": "^3.0",
     "fabpot/goutte": "^4.0",
-    "google/apiclient": "^2.0"
+    "google/apiclient": "^2.0",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {
