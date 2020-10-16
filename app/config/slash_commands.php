@@ -1,4 +1,4 @@
 <?php
 return [
-	'/start' => \App\Commands\Start::class,
+	'/start' => \App\Commands\CategoryList::class,
 ];
