@@ -60,7 +60,6 @@ abstract class BaseCommand
                 'status' => UserStatusService::NEW
             ]);
             $this->user = User::where('chat_id', $this->bot_user->getId())->first();
-            $this->triggerCommand(NotifyAdmin::class);
         }
 
         $this->processCommand();

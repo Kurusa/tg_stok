@@ -3,6 +3,8 @@
 namespace App\Commands;
 
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\SubCategory;
 use TelegramBot\Api\Types\Inline\InlineKeyboardMarkup;
 
@@ -26,6 +28,20 @@ class SubCategoryList extends BaseCommand
                 ]
             ];
         }
+
+        $order = Order::where('user_id', $this->user->id)->where('status', 'NEW')->first();
+        $order_products = OrderProduct::where('order_id', $order->id)->get();
+        if ($order_products->count()) {
+            $inline_keyboard_array[] = [
+                [
+                    'text' => $this->text['cart'],
+                    'callback_data' => json_encode([
+                        'a' => 'cart',
+                    ])
+                ]
+            ];
+        }
+
         $inline_keyboard_array[] = [
             [
                 'text' => $this->text['back'],

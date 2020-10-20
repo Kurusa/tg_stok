@@ -6,6 +6,7 @@ use App\Commands\BaseCommand;
 use App\Models\Category;
 use App\Models\User;
 use TelegramBot\Api\Types\Inline\InlineKeyboardMarkup;
+use TelegramBot\Api\Types\ReplyKeyboardMarkup;
 
 class AcceptUser extends BaseCommand
 {
@@ -33,6 +34,12 @@ class AcceptUser extends BaseCommand
             ];
         }
         $keyboard = new InlineKeyboardMarkup($inline_keyboard_array);
+        $this->getBot()->sendMessageWithKeyboard($processed_user->chat_id, 'Ваша заявка обработана, приступайте к заказам', new ReplyKeyboardMarkup([
+            [
+                'Каталог',
+                $this->text['cart']
+            ]
+        ], false, true));
         $this->getBot()->sendMessageWithKeyboard($processed_user->chat_id, $this->text['select_category'], $keyboard);
     }
 

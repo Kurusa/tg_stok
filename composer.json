@@ -7,7 +7,9 @@
     "twig/twig": "^3.0",
     "fabpot/goutte": "^4.0",
     "google/apiclient": "^2.0",
-    "ext-json": "*"
+    "ext-json": "*",
+    "phpoffice/phpspreadsheet": "^1.15",
+    "ext-curl": "*"
   },
   "autoload": {
     "psr-4": {

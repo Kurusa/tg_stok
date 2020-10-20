@@ -2,8 +2,7 @@
 
 namespace App;
 
-use App\Commands\MainMenu;
-use App\Services\Language\ChangeLanguageService;
+use App\Commands\CategoryList;
 use TelegramBot\Api\Client;
 use TelegramBot\Api\Types\Update;
 
@@ -15,8 +14,7 @@ class WebhookController
         $client = new Client(getenv('TELEGRAM_BOT_TOKEN'));
 
         $client->on(function (Update $update) {
-            $handler_class_name = MainMenu::class;
-
+            $handler_class_name = CategoryList::class;
             if ($update->getCallbackQuery()) {
                 $config = include(__DIR__ . '/config/callback_commands.php');
                 $action = \json_decode($update->getCallbackQuery()->getData(), true)['a'];
